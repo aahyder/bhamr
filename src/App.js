@@ -184,7 +184,7 @@ export default function Example() {
                 <p className="mt-4 text-lg text-gray-500 sm:mt-3">
                   I'd love to hear from you! Send me a message using the form below, or contact me directly via email (<a href="mailto:bhyder@bhamr.com"><strong>bhyder@bhamr.com</strong></a>) or phone (<a href="tel:+14239875150"><strong>423-987-5150</strong></a>)
                 </p>
-                <form action="" method="POST" className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                <form action="/api/contact" method="POST" className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                   <div>
                     <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                       First name
@@ -286,21 +286,21 @@ export default function Example() {
                     <div className="mt-4 grid grid-cols-1 gap-y-4">
                       <div className="flex items-center">
                         <input
-                          id="budget-under-25k"
-                          name="budget"
-                          defaultValue="under_25k"
+                          id="modeling"
+                          name="modeling"
+                          defaultValue="Architectural Modeling"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                         />
-                        <label htmlFor="budget-under-25k" className="ml-3">
+                        <label htmlFor="modeling" className="ml-3">
                           <span className="block text-sm text-gray-700">Architectural Modeling</span>
                         </label>
                       </div>
                       <div className="flex items-center">
                         <input
-                          id="budget-25k-50k"
-                          name="budget"
-                          defaultValue="25k-50k"
+                          id="rendering"
+                          name="rendering"
+                          defaultValue="3D Rendering"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                         />
@@ -310,9 +310,9 @@ export default function Example() {
                       </div>
                       <div className="flex items-center">
                         <input
-                          id="budget-50k-100k"
-                          name="budget"
-                          defaultValue="50k-100k"
+                          id="consulting"
+                          name="consulting"
+                          defaultValue="Consulting"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                         />
@@ -322,9 +322,9 @@ export default function Example() {
                       </div>
                       <div className="flex items-center">
                         <input
-                          id="budget-over-100k"
-                          name="budget"
-                          defaultValue="over_100k"
+                          id="other"
+                          name="other"
+                          defaultValue="Other"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                         />
