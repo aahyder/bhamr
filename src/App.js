@@ -88,11 +88,11 @@ export default function Example() {
           >
             <div className="flex items-center justify-between w-full lg:w-auto">
               <a href="#">
-                <span className="sr-only">Workflow</span>
+                <span className="sr-only">Ben Hyder Architectural Modeling & Rendering</span>
                 <img
-                  className="h-8 w-auto sm:h-10"
-                  src="./img/logo.jpg"
-                  alt=""
+                  className="h-8 w-auto sm:h-14"
+                  src="./img/logo.svg"
+                  alt="logo"
                 />
               </a>
               <p className="pl-5">Ben Hyder Architectural Modeling & Rendering</p>
@@ -105,9 +105,8 @@ export default function Example() {
             </div>
             <div className="hidden lg:flex lg:items-center lg:space-x-6">
               <a
-                href="#"
-                className="py-2 px-6 bg-white border border-transparent rounded-md shadow-md text-base font-medium text-navy-600 hover:bg-gray-50"
-              >
+                href="#contactUs"
+                className="py-2 px-6 bg-white border border-transparent rounded-md shadow-md text-base font-medium text-navy-600 hover:bg-gray-50">
                 Contact
               </a>
             </div>
@@ -154,7 +153,7 @@ export default function Example() {
                 </div>
                 <div className="mt-6 px-5">
                   <a
-                    href="#"
+                    href="#contactUs"
                     className="block text-center w-full py-2 px-4 border border-transparent rounded-md shadow bg-gray-500 text-navy font-medium hover:bg-frgray-600"
                   >
                     Contact
@@ -168,7 +167,7 @@ export default function Example() {
 
       <main>
         {/* Contact Section */}
-        <div className="relative bg-gray">
+        <div id='contactUs' className="relative bg-gray">
           <div className="lg:absolute lg:inset-0">
             <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
               <img
@@ -185,7 +184,7 @@ export default function Example() {
                 <p className="mt-4 text-lg text-gray-500 sm:mt-3">
                   I'd love to hear from you! Send me a message using the form below, or contact me directly via email (<a href="mailto:bhyder@bhamr.com"><strong>bhyder@bhamr.com</strong></a>) or phone (<a href="tel:+14239875150"><strong>423-987-5150</strong></a>)
                 </p>
-                <form action="#" method="POST" className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                <form action="" method="POST" className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                   <div>
                     <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                       First name
@@ -351,7 +350,7 @@ export default function Example() {
                   <div className="text-right sm:col-span-2">
                     <button
                       type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-500"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navy hover:bg-frgray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-frgray-500"
                     >
                       Submit
                     </button>
@@ -371,9 +370,9 @@ export default function Example() {
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-8 xl:col-span-2">
               <img
-                className="h-10"
-                src="./img/logo.jpg"
-                alt="Company name"
+                className="h-14"
+                src="./img/logo.svg"
+                alt="BHAMR"
               />
               <p className="text-gray-400 text-base">
                 Making the world a better place - by design
