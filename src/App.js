@@ -193,7 +193,7 @@ export default function Example() {
                       <input
                         type="text"
                         name="first-name"
-                        id="first-name"
+                        id="firstName"
                         autoComplete="given-name"
                         className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
                       />
@@ -207,7 +207,7 @@ export default function Example() {
                       <input
                         type="text"
                         name="last-name"
-                        id="last-name"
+                        id="lastName"
                         autoComplete="family-name"
                         className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
                       />
@@ -272,7 +272,7 @@ export default function Example() {
                     </div>
                     <div className="mt-1">
                       <textarea
-                        id="how-can-we-help"
+                        id="msg"
                         name="how-can-we-help"
                         aria-describedby="how-can-we-help-description"
                         rows={4}
@@ -286,8 +286,8 @@ export default function Example() {
                     <div className="mt-4 grid grid-cols-1 gap-y-4">
                       <div className="flex items-center">
                         <input
-                          id="modeling"
-                          name="modeling"
+                          id="type"
+                          name="type"
                           defaultValue="Architectural Modeling"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
@@ -298,8 +298,8 @@ export default function Example() {
                       </div>
                       <div className="flex items-center">
                         <input
-                          id="rendering"
-                          name="rendering"
+                          id="type"
+                          name="type"
                           defaultValue="3D Rendering"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
@@ -310,8 +310,8 @@ export default function Example() {
                       </div>
                       <div className="flex items-center">
                         <input
-                          id="consulting"
-                          name="consulting"
+                          id="type"
+                          name="type"
                           defaultValue="Consulting"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
@@ -322,8 +322,8 @@ export default function Example() {
                       </div>
                       <div className="flex items-center">
                         <input
-                          id="other"
-                          name="other"
+                          id="type"
+                          name="type"
                           defaultValue="Other"
                           type="radio"
                           className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
