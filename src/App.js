@@ -24,9 +24,11 @@
   ```
 */
 import { Fragment } from 'react'
+import React from 'react';
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
+// create static JSON site config
 const navigation = [
 ]
 const footerNavigation = {
@@ -77,322 +79,423 @@ const footerNavigation = {
   ],
 }
 
-export default function Example() {
-  return (
-    <div className="bg-white">
-      <Popover as="header" className="relative z-10">
-        <div className="bg-gray-50">
-          <nav
-            className="relative max-w-7xl mx-auto flex items-center justify-between pt-8 px-6 xl:px-8 pb-5"
-            aria-label="Global"
-          >
-            <div className="flex items-center justify-between w-full lg:w-auto">
-              <a href="#">
-                <span className="sr-only">Ben Hyder Architectural Modeling & Rendering</span>
-                <img
-                  className="h-8 w-auto sm:h-14"
-                  src="./img/logo.svg"
-                  alt="logo"
-                />
-              </a>
-              <p className="pl-5">Ben Hyder Architectural Modeling & Rendering</p>
-              <div className="-mr-2 flex items-center lg:hidden">
-                <Popover.Button className="bg-navy-50 rounded-md p-2 inline-flex items-center justify-center text-navy-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-navy-500">
-                  <span className="sr-only">Open main menu</span>
-                  <MenuIcon className="h-6 w-6" aria-hidden="true" />
-                </Popover.Button>
-              </div>
-            </div>
-            <div className="hidden lg:flex lg:items-center lg:space-x-6">
-              <a
-                href="#contactUs"
-                className="py-2 px-6 bg-white border border-transparent rounded-md shadow-md text-base font-medium text-navy-600 hover:bg-gray-50">
-                Contact
-              </a>
-            </div>
-            <div className="hidden space-x-10 lg:flex lg:ml-10">
-              {navigation.map((item) => (
-                <a key={item.name} href={item.href} className="text-base font-medium text-navy-500 hover:text-navy-600">
-                  {item.name}
-                </a>
-              ))}
-            </div>
-          </nav>
-        </div>
+export default class App extends React.Component {
+  // create constructor for state with blank values
+  constructor(props) {
+    super(props);
 
-        <Transition
-          as={Fragment}
-          enter="duration-150 ease-out"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="duration-100 ease-in"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
-        >
-          <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden">
-            <div className="rounded-lg shadow-lg bg-white ring-1 ring-navy ring-opacity-5 overflow-hidden">
-              <div className="px-5 pt-4 flex items-center justify-between">
-                <div className="-mr-2">
-                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-fr-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy-500">
-                    <span className="sr-only">Close menu</span>
-                    <XIcon className="h-6 w-6" aria-hidden="true" />
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      company: '',
+      phone: '',
+      msg: '',
+      type: '',
+      referer: ''
+    };
+  }
+  // create methods for state
+  updateFirstName(event) {
+    this.setState({
+      firstName: event.target.value
+    });
+  }
+
+  updateLastName(event) {
+    this.setState({
+      lasttName: event.target.value
+    });
+  }
+
+  updateEmail(event) {
+    this.setState({
+      email: event.target.value
+    });
+  }
+
+  updateCompany(event) {
+    this.setState({
+      company: event.target.value
+    });
+  }
+
+  updatePhone(event) {
+    this.setState({
+      phone: event.target.value
+    });
+  }
+
+  updateMsg(event) {
+    this.setState({
+      msg: event.target.value
+    });
+  }
+
+  updateType(event) {
+    this.setState({
+      type: event.target.value
+    });
+  }
+
+  updateReferer(event) {
+    this.setState({
+      referer: event.target.value
+    });
+  }
+  contactSubmit() {
+    fetch("https://bhamr.com/api/contact?"+
+          "firstName="+this.state.firstName+
+          "&lastName="+this.state.lastName+
+          "&email="+this.state.email+
+          "&company="+this.state.company+
+          "&phone="+this.state.phone+
+          "&msg="+this.state.msg+
+          "&type="+this.state.type+
+          "&ref="+this.state.referer,
+          {method: 'POST'}
+          )
+  }
+  //render html
+  render() {
+    return (
+      <div className="bg-white">
+        <Popover as="header" className="relative z-10">
+          <div className="bg-gray-50">
+            <nav
+              className="relative max-w-7xl mx-auto flex items-center justify-between pt-8 px-6 xl:px-8 pb-5"
+              aria-label="Global"
+            >
+              <div className="flex items-center justify-between w-full lg:w-auto">
+                <a href="#">
+                  <span className="sr-only">Ben Hyder Architectural Modeling & Rendering</span>
+                  <img
+                    className="h-8 w-auto sm:h-14"
+                    src="./img/logo.svg"
+                    alt="logo"
+                  />
+                </a>
+                <p className="pl-5">Ben Hyder Architectural Modeling & Rendering</p>
+                <div className="-mr-2 flex items-center lg:hidden">
+                  <Popover.Button className="bg-navy-50 rounded-md p-2 inline-flex items-center justify-center text-navy-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-navy-500">
+                    <span className="sr-only">Open main menu</span>
+                    <MenuIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
                 </div>
               </div>
-              <div className="pt-5 pb-6">
-                <div className="px-2 space-y-1">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="mt-6 px-5">
-                  <a
-                    href="#contactUs"
-                    className="block text-center w-full py-2 px-4 border border-transparent rounded-md shadow bg-gray-500 text-navy font-medium hover:bg-frgray-600"
-                  >
-                    Contact
-                  </a>
-                </div>
+              <div className="hidden lg:flex lg:items-center lg:space-x-6">
+                <a
+                  href="#contactUs"
+                  className="py-2 px-6 bg-white border border-transparent rounded-md shadow-md text-base font-medium text-navy-600 hover:bg-gray-50">
+                  Contact
+                </a>
               </div>
-            </div>
-          </Popover.Panel>
-        </Transition>
-      </Popover>
-
-      <main>
-        {/* Contact Section */}
-        <div id='contactUs' className="relative bg-gray">
-          <div className="lg:absolute lg:inset-0">
-            <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-              <img
-                className="w-full object-cover"
-                src="/img/Pedro Perez House_Vray.png"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="relative py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-14 lg:grid lg:grid-cols-2">
-            <div className="lg:pr-8">
-              <div className="max-w-md mx-auto sm:max-w-lg lg:mx-0">
-                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Let's work together</h2>
-                <p className="mt-4 text-lg text-gray-500 sm:mt-3">
-                  I'd love to hear from you! Send me a message using the form below, or contact me directly via email (<a href="mailto:bhyder@bhamr.com"><strong>bhyder@bhamr.com</strong></a>) or phone (<a href="tel:+14239875150"><strong>423-987-5150</strong></a>)
-                </p>
-                <form action="/api/contact" method="POST" className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-                  <div>
-                    <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                      First name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="firstName"
-                        autoComplete="given-name"
-                        className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                      Last name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="lastName"
-                        autoComplete="family-name"
-                        className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                      Email
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700">
-                      Company
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        autoComplete="organization"
-                        className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <div className="flex justify-between">
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                        Phone
-                      </label>
-                      <span id="phone-description" className="text-sm text-gray-500">
-                        Optional
-                      </span>
-                    </div>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        autoComplete="tel"
-                        aria-describedby="phone-description"
-                        className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <div className="flex justify-between">
-                      <label htmlFor="how-can-we-help" className="block text-sm font-medium text-gray-700">
-                        How can we help you?
-                      </label>
-                      <span id="how-can-we-help-description" className="text-sm text-gray-500">
-                        Max. 500 characters
-                      </span>
-                    </div>
-                    <div className="mt-1">
-                      <textarea
-                        id="msg"
-                        name="how-can-we-help"
-                        aria-describedby="how-can-we-help-description"
-                        rows={4}
-                        className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border border-gray-300 rounded-md"
-                        defaultValue={''}
-                      />
-                    </div>
-                  </div>
-                  <fieldset className="sm:col-span-2">
-                    <legend className="block text-sm font-medium text-gray-700">Inquiry Type</legend>
-                    <div className="mt-4 grid grid-cols-1 gap-y-4">
-                      <div className="flex items-center">
-                        <input
-                          id="type"
-                          name="type"
-                          defaultValue="Architectural Modeling"
-                          type="radio"
-                          className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
-                        />
-                        <label htmlFor="modeling" className="ml-3">
-                          <span className="block text-sm text-gray-700">Architectural Modeling</span>
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          id="type"
-                          name="type"
-                          defaultValue="3D Rendering"
-                          type="radio"
-                          className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
-                        />
-                        <label htmlFor="budget-25k-50k" className="ml-3">
-                          <span className="block text-sm text-gray-700">3D Rendering</span>
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          id="type"
-                          name="type"
-                          defaultValue="Consulting"
-                          type="radio"
-                          className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
-                        />
-                        <label htmlFor="budget-50k-100k" className="ml-3">
-                          <span className="block text-sm text-gray-700">Consulting</span>
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          id="type"
-                          name="type"
-                          defaultValue="Other"
-                          type="radio"
-                          className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
-                        />
-                        <label htmlFor="budget-over-100k" className="ml-3">
-                          <span className="block text-sm text-gray-700">Other</span>
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <div className="sm:col-span-2">
-                    <label htmlFor="how-did-you-hear-about-us" className="block text-sm font-medium text-gray-700">
-                      How did you hear about us?
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="how-did-you-hear-about-us"
-                        id="how-did-you-hear-about-us"
-                        className="shadow-sm focus:ring-navy-500 focus:border-navy-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="text-right sm:col-span-2">
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navy hover:bg-frgray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-frgray-500"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </main>
-      <footer className="bg-gray-900" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" className="sr-only">
-          Footer
-        </h2>
-        <div className="max-w-md mx-auto py-12 px-4 sm:max-w-lg sm:pt-16 sm:px-6 lg:max-w-7xl lg:pt-24 lg:pb-16 lg:px-8">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-8 xl:col-span-2">
-              <img
-                className="h-14"
-                src="./img/logo.svg"
-                alt="BHAMR"
-              />
-              <p className="text-gray-400 text-base">
-                Making the world a better place - by design
-              </p>
-              <div className="flex space-x-6">
-                {footerNavigation.social.map((item) => (
-                  <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-300">
-                    <span className="sr-only">{item.name}</span>
-                    <item.icon className="h-6 w-6" aria-hidden="true" />
+              <div className="hidden space-x-10 lg:flex lg:ml-10">
+                {navigation.map((item) => (
+                  <a key={item.name} href={item.href} className="text-base font-medium text-navy-500 hover:text-navy-600">
+                    {item.name}
                   </a>
                 ))}
               </div>
+            </nav>
+          </div>
+
+          <Transition
+            as={Fragment}
+            enter="duration-150 ease-out"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="duration-100 ease-in"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden">
+              <div className="rounded-lg shadow-lg bg-white ring-1 ring-navy ring-opacity-5 overflow-hidden">
+                <div className="px-5 pt-4 flex items-center justify-between">
+                  <div className="-mr-2">
+                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-fr-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy-500">
+                      <span className="sr-only">Close menu</span>
+                      <XIcon className="h-6 w-6" aria-hidden="true" />
+                    </Popover.Button>
+                  </div>
+                </div>
+                <div className="pt-5 pb-6">
+                  <div className="px-2 space-y-1">
+                    {navigation.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                  <div className="mt-6 px-5">
+                    <a
+                      href="#contactUs"
+                      className="block text-center w-full py-2 px-4 border border-transparent rounded-md shadow bg-gray-500 text-navy font-medium hover:bg-frgray-600"
+                    >
+                      Contact
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </Popover>
+
+        <main>
+          {/* Contact Section */}
+          <div id='contactUs' className="relative bg-gray">
+            <div className="lg:absolute lg:inset-0">
+              <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <img
+                  className="w-full object-cover"
+                  src="/img/Pedro Perez House_Vray.png"
+                  alt=""
+                />
+              </div>
             </div>
-            
+            <div className="relative py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-14 lg:grid lg:grid-cols-2">
+              <div className="lg:pr-8">
+                <div className="max-w-md mx-auto sm:max-w-lg lg:mx-0">
+                  <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Let's work together</h2>
+                  <p className="mt-4 text-lg text-gray-500 sm:mt-3">
+                    I'd love to hear from you! Send me a message using the form below, or contact me directly via email (<a href="mailto:bhyder@bhamr.com"><strong>bhyder@bhamr.com</strong></a>) or phone (<a href="tel:+14239875150"><strong>423-987-5150</strong></a>)
+                  </p>
+                  <form onSubmit={this.contactSubmit()} className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <div>
+                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                        First name
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          value={this.state.firstName} 
+                          onChange={this.updateFirstName.bind(this)}
+                          type="text"
+                          name="first-name"
+                          id="firstName"
+                          autoComplete="given-name"
+                          className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                        Last name
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          value={this.state.lastName} 
+                          onChange={this.updateLastName.bind(this)}                        
+                          type="text"
+                          name="last-name"
+                          id="lastName"
+                          autoComplete="family-name"
+                          className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        Email
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          value={this.state.email} 
+                          onChange={this.updateEmail.bind(this)}                        
+                          id="email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+                        Company
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          value={this.state.company} 
+                          onChange={this.updateCompany.bind(this)}                        
+                          type="text"
+                          name="company"
+                          id="company"
+                          autoComplete="organization"
+                          className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <div className="flex justify-between">
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                          Phone
+                        </label>
+                        <span id="phone-description" className="text-sm text-gray-500">
+                          Optional
+                        </span>
+                      </div>
+                      <div className="mt-1">
+                        <input
+                          value={this.state.phone} 
+                          onChange={this.updatePhone.bind(this)}                        
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          autoComplete="tel"
+                          aria-describedby="phone-description"
+                          className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <div className="flex justify-between">
+                        <label htmlFor="how-can-we-help" className="block text-sm font-medium text-gray-700">
+                          How can we help you?
+                        </label>
+                        <span id="how-can-we-help-description" className="text-sm text-gray-500">
+                          Max. 500 characters
+                        </span>
+                      </div>
+                      <div className="mt-1">
+                        <textarea
+                          value={this.state.msg} 
+                          onChange={this.updateMsg.bind(this)}                        
+                          id="msg"
+                          name="how-can-we-help"
+                          aria-describedby="how-can-we-help-description"
+                          rows={4}
+                          className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border border-gray-300 rounded-md"
+                          defaultValue={''}
+                        />
+                      </div>
+                    </div>
+                    <fieldset className="sm:col-span-2">
+                      <legend className="block text-sm font-medium text-gray-700">Inquiry Type</legend>
+                      <div className="mt-4 grid grid-cols-1 gap-y-4">
+                        <div className="flex items-center">
+                          <input
+                            value={this.state.type} 
+                            onChange={this.updateType.bind(this)}                                
+                            id="type"
+                            name="type"
+                            defaultValue="Architectural Modeling"
+                            type="radio"
+                            className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
+                          />
+                          <label htmlFor="modeling" className="ml-3">
+                            <span className="block text-sm text-gray-700">Architectural Modeling</span>
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            value={this.state.type} 
+                            onChange={this.updateType.bind(this)}                          
+                            id="type"
+                            name="type"
+                            defaultValue="3D Rendering"
+                            type="radio"
+                            className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
+                          />
+                          <label htmlFor="type" className="ml-3">
+                            <span className="block text-sm text-gray-700">3D Rendering</span>
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            value={this.state.type} 
+                            onChange={this.updateType.bind(this)}                                
+                            id="type"
+                            name="type"
+                            defaultValue="Consulting"
+                            type="radio"
+                            className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
+                          />
+                          <label htmlFor="budget-50k-100k" className="ml-3">
+                            <span className="block text-sm text-gray-700">Consulting</span>
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            value={this.state.type} 
+                            onChange={this.updateType.bind(this)}                                
+                            id="type"
+                            name="type"
+                            defaultValue="Other"
+                            type="radio"
+                            className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
+                          />
+                          <label htmlFor="budget-over-100k" className="ml-3">
+                            <span className="block text-sm text-gray-700">Other</span>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div className="sm:col-span-2">
+                      <label htmlFor="how-did-you-hear-about-us" className="block text-sm font-medium text-gray-700">
+                        How did you hear about us?
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          value={this.state.referer} 
+                          onChange={this.updateReferer.bind(this)}                              
+                          type="text"
+                          name="how-did-you-hear-about-us"
+                          id="how-did-you-hear-about-us"
+                          className="shadow-sm focus:ring-navy-500 focus:border-navy-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>
+                    <div className="text-right sm:col-span-2">
+                      <button
+                        type="submit"
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navy hover:bg-frgray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-frgray-500"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mt-12 border-t border-gray-700 pt-8">
-            <p className="text-base text-gray-400 xl:text-center">&copy; 2022 Ben Hyder Architectural Modeling & Rendering, All rights reserved.</p>
+
+        </main>
+        <footer className="bg-gray-900" aria-labelledby="footer-heading">
+          <h2 id="footer-heading" className="sr-only">
+            Footer
+          </h2>
+          <div className="max-w-md mx-auto py-12 px-4 sm:max-w-lg sm:pt-16 sm:px-6 lg:max-w-7xl lg:pt-24 lg:pb-16 lg:px-8">
+            <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+              <div className="space-y-8 xl:col-span-2">
+                <img
+                  className="h-14"
+                  src="./img/logo.svg"
+                  alt="BHAMR"
+                />
+                <p className="text-gray-400 text-base">
+                  Making the world a better place - by design
+                </p>
+                <div className="flex space-x-6">
+                  {footerNavigation.social.map((item) => (
+                    <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-300">
+                      <span className="sr-only">{item.name}</span>
+                      <item.icon className="h-6 w-6" aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+              
+            </div>
+            <div className="mt-12 border-t border-gray-700 pt-8">
+              <p className="text-base text-gray-400 xl:text-center">&copy; 2022 Ben Hyder Architectural Modeling & Rendering, All rights reserved.</p>
+            </div>
           </div>
-        </div>
-      </footer>
-    </div>
-  )
+        </footer>
+      </div>
+    )
+  }
 }
