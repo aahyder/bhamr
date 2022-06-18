@@ -167,7 +167,16 @@ export default class App extends React.Component {
             "&type="+this.state.type+
             "&ref="+this.state.referer,
             {method: 'POST'}
-            )
+            ).then(function(response) {
+              if(!response.ok) {}
+                throw Error(response.statusText);
+              }
+              return response;
+            }).then(function(response) {
+              console.log("contactSubmit OK");
+            }).catch(function(error) {
+              console.log(error);
+            });
     }
   }
   //render html
