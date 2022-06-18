@@ -104,7 +104,7 @@ export default class App extends React.Component {
 
   updateLastName(event) {
     this.setState({
-      lasttName: event.target.value
+      lastName: event.target.value
     });
   }
 
@@ -143,18 +143,32 @@ export default class App extends React.Component {
       referer: event.target.value
     });
   }
-  contactSubmit() {
-    fetch("https://bhamr.com/api/contact?"+
-          "firstName="+this.state.firstName+
-          "&lastName="+this.state.lastName+
-          "&email="+this.state.email+
-          "&company="+this.state.company+
-          "&phone="+this.state.phone+
-          "&msg="+this.state.msg+
-          "&type="+this.state.type+
-          "&ref="+this.state.referer,
-          {method: 'POST'}
-          )
+
+  contactSubmit(event) {
+    console.log('event fired');
+    var form = document.getElementById("contactForm");
+    if(form != null) {
+      window.alert("http://bhamr.com/api/contact?"+
+      "firstName="+this.state.firstName+
+      "&lastName="+this.state.lastName+
+      "&email="+this.state.email+
+      "&company="+this.state.company+
+      "&phone="+this.state.phone+
+      "&msg="+this.state.msg+
+      "&type="+this.state.type+
+      "&ref="+this.state.referer);
+      fetch("http://bhamr.com/api/contact?"+
+            "firstName="+this.state.firstName+
+            "&lastName="+this.state.lastName+
+            "&email="+this.state.email+
+            "&company="+this.state.company+
+            "&phone="+this.state.phone+
+            "&msg="+this.state.msg+
+            "&type="+this.state.type+
+            "&ref="+this.state.referer,
+            {method: 'POST'}
+            )
+    }
   }
   //render html
   render() {
@@ -264,9 +278,9 @@ export default class App extends React.Component {
                   <p className="mt-4 text-lg text-gray-500 sm:mt-3">
                     I'd love to hear from you! Send me a message using the form below, or contact me directly via email (<a href="mailto:bhyder@bhamr.com"><strong>bhyder@bhamr.com</strong></a>) or phone (<a href="tel:+14239875150"><strong>423-987-5150</strong></a>)
                   </p>
-                  <form onSubmit={this.contactSubmit()} className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                  <form onSubmit={(e) => this.contactSubmit(this)} id="contactForm" className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                     <div>
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                         First name
                       </label>
                       <div className="mt-1">
@@ -274,7 +288,7 @@ export default class App extends React.Component {
                           value={this.state.firstName} 
                           onChange={this.updateFirstName.bind(this)}
                           type="text"
-                          name="first-name"
+                          name="firstName"
                           id="firstName"
                           autoComplete="given-name"
                           className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
@@ -282,7 +296,7 @@ export default class App extends React.Component {
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                         Last name
                       </label>
                       <div className="mt-1">
@@ -290,7 +304,7 @@ export default class App extends React.Component {
                           value={this.state.lastName} 
                           onChange={this.updateLastName.bind(this)}                        
                           type="text"
-                          name="last-name"
+                          name="lastName"
                           id="lastName"
                           autoComplete="family-name"
                           className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border-gray-300 rounded-md"
@@ -365,11 +379,10 @@ export default class App extends React.Component {
                           value={this.state.msg} 
                           onChange={this.updateMsg.bind(this)}                        
                           id="msg"
-                          name="how-can-we-help"
-                          aria-describedby="how-can-we-help-description"
+                          name="msg"
+                          aria-describedby="msg"
                           rows={4}
                           className="block w-full shadow-sm sm:text-sm focus:ring-navy-500 focus:border-navy-500 border border-gray-300 rounded-md"
-                          defaultValue={''}
                         />
                       </div>
                     </div>
@@ -378,11 +391,10 @@ export default class App extends React.Component {
                       <div className="mt-4 grid grid-cols-1 gap-y-4">
                         <div className="flex items-center">
                           <input
-                            value={this.state.type} 
+                            value="Architectural Modeling"
                             onChange={this.updateType.bind(this)}                                
                             id="type"
                             name="type"
-                            defaultValue="Architectural Modeling"
                             type="radio"
                             className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                           />
@@ -392,11 +404,10 @@ export default class App extends React.Component {
                         </div>
                         <div className="flex items-center">
                           <input
-                            value={this.state.type} 
+                            value="3D Rendering"
                             onChange={this.updateType.bind(this)}                          
                             id="type"
                             name="type"
-                            defaultValue="3D Rendering"
                             type="radio"
                             className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                           />
@@ -406,11 +417,10 @@ export default class App extends React.Component {
                         </div>
                         <div className="flex items-center">
                           <input
-                            value={this.state.type} 
+                            value="Consulting"
                             onChange={this.updateType.bind(this)}                                
                             id="type"
                             name="type"
-                            defaultValue="Consulting"
                             type="radio"
                             className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                           />
@@ -420,11 +430,10 @@ export default class App extends React.Component {
                         </div>
                         <div className="flex items-center">
                           <input
-                            value={this.state.type} 
-                            onChange={this.updateType.bind(this)}                                
+                            value="Other" 
+                            onChange={this.updateType.bind(this)}                               
                             id="type"
                             name="type"
-                            defaultValue="Other"
                             type="radio"
                             className="focus:ring-navy-500 h-4 w-4 text-navy-600 border-gray-300"
                           />
@@ -443,8 +452,8 @@ export default class App extends React.Component {
                           value={this.state.referer} 
                           onChange={this.updateReferer.bind(this)}                              
                           type="text"
-                          name="how-did-you-hear-about-us"
-                          id="how-did-you-hear-about-us"
+                          name="ref"
+                          id="ref"
                           className="shadow-sm focus:ring-navy-500 focus:border-navy-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         />
                       </div>
